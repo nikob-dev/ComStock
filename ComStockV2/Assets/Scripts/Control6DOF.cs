@@ -14,7 +14,7 @@ public class Control6DOF : MonoBehaviour
     {
         //Start receiving input by the Control
         MLInput.Start();
-        _controller = MLInput.GetController(MLInput.Hand.Right);
+        _controller = MLInput.GetController(MLInput.Hand.Left);
     }
     void OnDestroy()
     {
