@@ -25,7 +25,7 @@ public class BarGraph : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            cube[i].transform.localScale = new Vector3(transform.localScale.x, temp.wind.deg-i*2, transform.localScale.z);
+            cube[i].transform.localScale = new Vector3(transform.localScale.x, (temp.wind.deg/100)*i, transform.localScale.z);
         }
     }
 }
