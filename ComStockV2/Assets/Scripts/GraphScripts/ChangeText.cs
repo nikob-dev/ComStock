@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using UnityEngine;
-using Serialization;
+using JSONPayload;
 
 public class ChangeText : MonoBehaviour
 {
-    Weather temp = HttpRequest.weather;
+    Stock temp = HttpRequest.stock;
     void Update()
     {
         //Debug.Log("Text: " );
-        GetComponent<TMPro.TextMeshPro>().text = temp.wind.deg.ToString();
+        GetComponent<TMPro.TextMeshPro>().text = temp.AAPL.quote.open.ToString();
     }     
 }
