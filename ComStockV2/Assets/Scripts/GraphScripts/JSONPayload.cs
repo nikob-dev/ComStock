@@ -21,7 +21,27 @@ namespace JSONPayload
     [Serializable]
     public class Quote
     {
-        public float open = 0;
+        public string symbol { get; set; }
+        public string companyName = null;
+        public string primaryExchange { get; set; }
+        public string calculationPrice { get; set; }
+        public float open { get; set; }
+        public long openTime { get; set; }
+        public string openSource { get; set; }
+        public double close { get; set; }
+        public long closeTime { get; set; }
+        public string closeSource { get; set; }
+        public double high { get; set; }
+        public long highTime { get; set; }
+        public string highSource { get; set; }
+        public double low { get; set; }
+        public long lowTime { get; set; }
+        public string lowSource { get; set; }
+        public double latestPrice { get; set; }
+        public string latestSource { get; set; }
+        public string latestTime { get; set; }
+        public long latestUpdate { get; set; }
+        public int latestVolume { get; set; }
     }
 
     [Serializable]

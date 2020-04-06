@@ -12,6 +12,6 @@ public class ChangeText : MonoBehaviour
     void Update()
     {
         //Debug.Log("Text: " );
-        GetComponent<TMPro.TextMeshPro>().text = temp.AAPL.quote.open.ToString();
+        GetComponent<TMPro.TextMeshPro>().text = temp.AAPL.quote.companyName;
     }     
 }
