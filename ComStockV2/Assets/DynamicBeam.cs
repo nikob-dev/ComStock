@@ -37,8 +37,8 @@ public class DynamicBeam : MonoBehaviour
         }
         else
         {
-            beam.SetPosition(0, controller.transform.position);
-            beam.SetPosition(1, controller.transform.forward * 5);
+            beam.SetPosition(0, transform.position);
+            beam.SetPosition(1, transform.forward * 5);
         }
         
     }
