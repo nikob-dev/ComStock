@@ -2,31 +2,26 @@
 * ComStock 2020
 */
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-using UnityEngine;
 using JSONPayload;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine;
 
 /*
 * BarGraph creates Cube GameObjects and assigns components to give them dimensions in  Unity/Magic Leap
 */
 public class BarGraph : MonoBehaviour
 {
-    public GameObject Cube00, Cube01, Cube02, Cube03, Cube04;
+    public GameObject[] Cube = new GameObject[5];
     public TextMeshPro CubeText00, CubeText01, CubeText02,
                        CubeText03, CubeText04, StockId, X_Axis, Y_Axis;
+    public TextMeshPro []Y_AxisLabel = new TextMeshPro[5];
     //private GameObject[] bar = new GameObject[5];       //Bar Graph Cubes
     //private GameObject[] barText = new GameObject[5];
     private Stock temp = HttpRequest.stock;                      //Cache for stored API data
     private float[] tempData = HttpRequest.data;                 //temp
     private RectTransform cubeTranform;                          //temp
     private Renderer stockNameRender;                                       //temp
-    private RectTransform graphContainer, stockNameRec;
+    private RectTransform graphContainer;
     private RectTransform[] cubeEdit = new RectTransform[5];
 
     /*
@@ -48,11 +43,13 @@ public class BarGraph : MonoBehaviour
     void Update()
     {
         //Cube Scaling
-        Cube00.transform.localScale = new Vector3(1, tempData[0] / 100, 1);
-        Cube01.transform.localScale = new Vector3(1, tempData[1] / 100, 1);
-        Cube02.transform.localScale = new Vector3(1, tempData[2] / 100, 1);
-        Cube03.transform.localScale = new Vector3(1, tempData[3] / 100, 1);
-        Cube04.transform.localScale = new Vector3(1, tempData[4] / 100, 1);
+        cubeEdit[0].sizeDelta = new Vector2(1, tempData[0]);
+        cubeEdit[1].sizeDelta = new Vector2(1, tempData[0]);
+        Cube[0].transform.localScale = new Vector3(.75f, tempData[0] / 100, .75f);
+        Cube[1].transform.localScale = new Vector3(.75f, tempData[1] / 100, .75f);
+        Cube[2].transform.localScale = new Vector3(.75f, tempData[2] / 100, .75f);
+        Cube[3].transform.localScale = new Vector3(.75f, tempData[3] / 100, .75f);
+        Cube[4].transform.localScale = new Vector3(.75f, tempData[4] / 100, .75f);
         //Cube Labels
         CubeText00.text = tempData[0].ToString();
         CubeText01.text = tempData[1].ToString();
@@ -61,6 +58,7 @@ public class BarGraph : MonoBehaviour
         CubeText04.text = tempData[4].ToString();
         //Graph Labels
         StockId.text = temp.AAPL.quote.symbol.ToString();
+        Y_AxisLabel[0].text = "0";
     }
 
     /*
@@ -71,25 +69,28 @@ public class BarGraph : MonoBehaviour
 
         //Creating Cubes and altering their properties
         //Cube00
-        Cube00.transform.SetParent(graphContainer);
-        Cube00.transform.position = new Vector3(0, 0, 7);
-        Cube00.transform.localScale = new Vector3(1, 1, 1);
+        Cube[0].transform.SetParent(graphContainer);
+        Cube[0].transform.position = new Vector3(0, 0, 7);
+        Cube[0].transform.localScale = new Vector3(.75f, .75f, .75f);
+        cubeEdit[0] = Cube[0].GetComponent<RectTransform>();
+    
         //Cube01
-        Cube01.transform.SetParent(graphContainer);
-        Cube01.transform.position = new Vector3(1, 0, 7);
-        Cube01.transform.localScale = new Vector3(1, 1, 1);
+        Cube[1].transform.SetParent(graphContainer);
+        Cube[1].transform.position = new Vector3(1, 0, 7);
+        Cube[1].transform.localScale = new Vector3(.75f, .75f, .75f);
+        cubeEdit[1] = Cube[0].GetComponent<RectTransform>();
         //Cube02
-        Cube02.transform.SetParent(graphContainer);
-        Cube02.transform.position = new Vector3(2, 0, 7);
-        Cube02.transform.localScale = new Vector3(1, 1, 1);
+        Cube[2].transform.SetParent(graphContainer);
+        Cube[2].transform.position = new Vector3(2, 0, 7);
+        Cube[2].transform.localScale = new Vector3(.75f, .75f, .75f);
         //Cube03
-        Cube03.transform.SetParent(graphContainer);
-        Cube03.transform.position = new Vector3(3, 0, 7);
-        Cube03.transform.localScale = new Vector3(1, 1, 1);
+        Cube[3].transform.SetParent(graphContainer);
+        Cube[3].transform.position = new Vector3(3, 0, 7);
+        Cube[3].transform.localScale = new Vector3(.75f, .75f, .75f);
         //Cube04
-        Cube04.transform.SetParent(graphContainer);
-        Cube04.transform.position = new Vector3(4, 0, 7);
-        Cube04.transform.localScale = new Vector3(1, 1, 1);
+        Cube[4].transform.SetParent(graphContainer);
+        Cube[4].transform.position = new Vector3(4, 0, 7);
+        Cube[4].transform.localScale = new Vector3(.75f, .75f, .75f);
 
         //cubeEdit[i] = bar[i].AddComponent<RectTransform>();
         //cubeEdit[i].anchoredPosition = new Vector3(i, 0f, 7f);                 //used to tie the cubes to a spot 
@@ -118,8 +119,12 @@ public class BarGraph : MonoBehaviour
     void GraphLabelCreate()
     {
         StockId.transform.position = new Vector3(3, 3, 7);
+        //X Axis Labels
         X_Axis.transform.position = new Vector3(4, -3, 7);
+        Y_AxisLabel[0].transform.position = new Vector3(0, -.25f, 7);
         Y_Axis.transform.position = new Vector3(-1, 0, 7);
+
+
     }
 }
 
