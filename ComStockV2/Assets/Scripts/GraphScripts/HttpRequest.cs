@@ -32,8 +32,8 @@ public class HttpRequest : MonoBehaviour
         {
             count = 0;
             stock = await GetPayloadAsync();
-            Debug.Log("data " + stock.AAPL.chart[0].open);
-            for(int i = 0; i < 5; i++)
+            Debug.Log("data " + stock.AAPL.quote.symbol);
+            for (int i = 0; i < 5; i++)
             {
                 data[i] = stock.AAPL.chart[i].open;
             }
