@@ -9,7 +9,7 @@ public class DynamicBeam : MonoBehaviour
      Purpose: emit a beam from the front of the controller*/
 
     public GameObject controller;
-    private LineRenderer beam;
+    public LineRenderer beam;
     public Color startColor;
     public Color endColor;
 
