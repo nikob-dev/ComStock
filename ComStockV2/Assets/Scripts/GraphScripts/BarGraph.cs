@@ -18,7 +18,8 @@ public class BarGraph : MonoBehaviour
     //private GameObject[] bar = new GameObject[5];       //Bar Graph Cubes
     //private GameObject[] barText = new GameObject[5];
     private Stock temp = HttpRequest.stock;                      //Cache for stored API data
-    private float[] tempData = HttpRequest.data;                 //temp
+    private float[] tempData = HttpRequest.data;
+    private string title;//temp
     private RectTransform cubeTranform;                          //temp
     private Renderer stockNameRender;                                       //temp
     private RectTransform graphContainer;
@@ -42,6 +43,8 @@ public class BarGraph : MonoBehaviour
     */
     void Update()
     {
+
+        title = HttpRequest.s;
         //Cube Scaling
         cubeEdit[0].sizeDelta = new Vector2(1, tempData[0]);
         cubeEdit[1].sizeDelta = new Vector2(1, tempData[0]);
@@ -57,7 +60,7 @@ public class BarGraph : MonoBehaviour
         CubeText03.text = tempData[3].ToString();
         CubeText04.text = tempData[4].ToString();
         //Graph Labels
-        StockId.text = temp.AAPL.quote.symbol.ToString();
+        StockId.text = "AAPL";
         Y_AxisLabel[0].text = "0";
     }
 
@@ -70,26 +73,26 @@ public class BarGraph : MonoBehaviour
         //Creating Cubes and altering their properties
         //Cube00
         Cube[0].transform.SetParent(graphContainer);
-        Cube[0].transform.position = new Vector3(0, 0, 7);
+        Cube[0].transform.position = new Vector3(0, 0, 5);
         Cube[0].transform.localScale = new Vector3(.75f, .75f, .75f);
         cubeEdit[0] = Cube[0].GetComponent<RectTransform>();
     
         //Cube01
         Cube[1].transform.SetParent(graphContainer);
-        Cube[1].transform.position = new Vector3(1, 0, 7);
+        Cube[1].transform.position = new Vector3(1, 0, 5);
         Cube[1].transform.localScale = new Vector3(.75f, .75f, .75f);
         cubeEdit[1] = Cube[0].GetComponent<RectTransform>();
         //Cube02
         Cube[2].transform.SetParent(graphContainer);
-        Cube[2].transform.position = new Vector3(2, 0, 7);
+        Cube[2].transform.position = new Vector3(2, 0, 5);
         Cube[2].transform.localScale = new Vector3(.75f, .75f, .75f);
         //Cube03
         Cube[3].transform.SetParent(graphContainer);
-        Cube[3].transform.position = new Vector3(3, 0, 7);
+        Cube[3].transform.position = new Vector3(3, 0, 5);
         Cube[3].transform.localScale = new Vector3(.75f, .75f, .75f);
         //Cube04
         Cube[4].transform.SetParent(graphContainer);
-        Cube[4].transform.position = new Vector3(4, 0, 7);
+        Cube[4].transform.position = new Vector3(4, 0, 5);
         Cube[4].transform.localScale = new Vector3(.75f, .75f, .75f);
 
         //cubeEdit[i] = bar[i].AddComponent<RectTransform>();
@@ -106,11 +109,11 @@ public class BarGraph : MonoBehaviour
   */
     void CubeTextCreate()
     {
-        CubeText00.transform.position = new Vector3(0, -2, 7);
-        CubeText01.transform.position = new Vector3(1, -2, 7);
-        CubeText02.transform.position = new Vector3(2, -2, 7);
-        CubeText03.transform.position = new Vector3(3, -2, 7);
-        CubeText04.transform.position = new Vector3(4, -2, 7);
+        CubeText00.transform.position = new Vector3(0, -2, 3);
+        CubeText01.transform.position = new Vector3(1, -2, 3);
+        CubeText02.transform.position = new Vector3(2, -2, 3);
+        CubeText03.transform.position = new Vector3(3, -2, 3);
+        CubeText04.transform.position = new Vector3(4, -2, 3);
     }
 
     /*
@@ -118,11 +121,11 @@ public class BarGraph : MonoBehaviour
     */
     void GraphLabelCreate()
     {
-        StockId.transform.position = new Vector3(3, 3, 7);
+        StockId.transform.position = new Vector3(3, 3, 5);
         //X Axis Labels
-        X_Axis.transform.position = new Vector3(4, -3, 7);
-        Y_AxisLabel[0].transform.position = new Vector3(0, -.25f, 7);
-        Y_Axis.transform.position = new Vector3(-1, 0, 7);
+        X_Axis.transform.position = new Vector3(4, -3, 5);
+        Y_AxisLabel[0].transform.position = new Vector3(0, -.25f, 5);
+        Y_Axis.transform.position = new Vector3(-1, 0, 5);
 
 
     }

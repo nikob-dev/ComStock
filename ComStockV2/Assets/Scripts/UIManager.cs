@@ -14,8 +14,10 @@ public class UIManager : MonoBehaviour
     public GameObject deleteGraph;
     public GameObject help;
     public GameObject mainMenu;
+    public GameObject graph;
+    public GameObject mesh;
 
-    public Text testText;
+    //public Text testText;
 
     //create 'button' class
     public class button
@@ -67,7 +69,9 @@ public class UIManager : MonoBehaviour
         AssignDirections();
         MLInput.Start();//initiate input protocols
         controller = MLInput.GetController(MLInput.Hand.Left);//get controller input
-
+        graph.SetActive(false);
+        mainMenu.SetActive(true);
+        mesh.GetComponent<Renderer>().enabled = false;
         
 
         //add start
@@ -80,7 +84,7 @@ public class UIManager : MonoBehaviour
         Vector3 selectScale = new Vector3(2, 2, 2);
         Vector3 nonSelectScale = new Vector3(1, 1, 1);
 
-        testText.text = addGraph.ToString();
+        //testText.text = addGraph.ToString();
         //addGraphBtn.current.transform.position = new Vector3(addGraphBtn.current.transform.position.x, addGraphBtn.current.transform.position.y, addGraphBtn.current.transform.position.z * 5);
 
         if (true)//controller.TriggerValue > 0.5f)
@@ -93,6 +97,9 @@ public class UIManager : MonoBehaviour
                     addGraph.transform.localScale = selectScale;
                     if(controller.TriggerValue > 0.5f)
                     {
+
+                        graph.SetActive(true);
+                        mainMenu.SetActive(false);
                         //shift/delete MainMenu
                         //Order66();
                   
