@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a955ee40b78a2c489d4859b55f1f5e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanvasDistanceForwards: 1.5
+  CanvasDistanceForwards: 1
   CanvasDistanceUpwards: 0
   PositionLerpSpeed: 1
   RotationLerpSpeed: 1
