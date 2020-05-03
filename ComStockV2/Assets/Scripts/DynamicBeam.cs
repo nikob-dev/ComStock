@@ -7,9 +7,9 @@ public class DynamicBeam : MonoBehaviour
 {
     /*This script will be attached to the controller object in Unity.
      Purpose: emit a beam from the front of the controller*/
-    //public GameObject controller;
+
     public GameObject controller;
-    private LineRenderer beam;
+    public LineRenderer beam;
     public Color startColor;
     public Color endColor;
 
@@ -38,7 +38,7 @@ public class DynamicBeam : MonoBehaviour
         else
         {
             beam.SetPosition(0, transform.position);
-            beam.SetPosition(1, transform.forward * 5);
+            beam.SetPosition(1, transform.position * 100);
         }
         
     }

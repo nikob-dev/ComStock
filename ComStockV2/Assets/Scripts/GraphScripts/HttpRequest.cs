@@ -14,11 +14,14 @@ public class HttpRequest : MonoBehaviour
     //https://api.openweathermap.org/data/2.5/weather?zip={ZipCode}&appid={APIkey}
     private static readonly HttpClient client = new HttpClient();
     public static Stock stock = new Stock();
-    public static float[] data = new float[5]; 
+    public static float[] data = new float[5];
+    public static string s = null;
+
     public async Task<Stock> GetPayloadAsync()
     {
         Stock temp = new Stock();
         client.DefaultRequestHeaders.Accept.Clear();
+
         string streamTask = await client.GetStringAsync($"https://sandbox.iexapis.com/stable/stock/market/batch?symbols=aapl&types=quote,chart&range=1m&last=5&token=Tsk_06954ec2f4284ea2b1e9e4f46be5c47e");
         temp = JsonUtility.FromJson<Stock>(streamTask);
         Debug.Log("data " + temp.AAPL.chart[1].open);
@@ -32,12 +35,12 @@ public class HttpRequest : MonoBehaviour
         {
             count = 0;
             stock = await GetPayloadAsync();
-            Debug.Log("data " + stock.AAPL.chart[0].open);
-            for(int i = 0; i < 5; i++)
+            Debug.Log("data " + stock.AAPL.quote.symbol);
+            for (int i = 0; i < 5; i++)
             {
                 data[i] = stock.AAPL.chart[i].open;
             }
-
+            s = stock.AAPL.quote.symbol;
         }
     }
 

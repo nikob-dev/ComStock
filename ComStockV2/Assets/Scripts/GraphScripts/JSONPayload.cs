@@ -22,6 +22,7 @@ namespace JSONPayload
     public class Quote
     {
         public float open = 0;
+        public string symbol;
     }
 
     [Serializable]
